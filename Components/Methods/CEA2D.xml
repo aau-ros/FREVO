@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE zion SYSTEM "..//IComponent.dtd">
+
+<icomponent>
+  <config>
+    <entry key="classdir" type="STRING" value="CEA2D/CEA2D"/>
+    <entry key="classname" type="STRING" value="CEA2D.CEA2D"/>
+	<entry key="name" type="STRING" value="CEA2D"/>
+	<entry key="description" type="STRING" value="2-dimensional cellular Evolutionary Algorithm (cEA). The cells/candidates are aligned on a NxN torus surface."></entry>
+	<entry key="image" type="STRING" value="CEA2D.png"/>
+	<entry key="tags" type="STRING" value="CEA2D TAG"/>
+  </config>
+  <properties>
+      <propentry key="generations" type="INT" value="200" />
+      <propentry key="populationsize" type="INT" value="100" />
+      <propentry key="neighbourhoodmode" type="INT" value="1" />
+      <propentry key="saveinterval" type="INT" value="0" />
+      <propentry key="mutationseverity" type="FLOAT" value="0.3f" />
+      <propentry key="mutationprobability" type="FLOAT" value="1" />
+      <propentry key="percentmutateelite" type="INT" value="59" />
+      <propentry key="percentelite" type="INT" value="11" />
+      <propentry key="percentxoverelite" type="INT" value="30" />
+  </properties>
+</icomponent>

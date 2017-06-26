@@ -1,0 +1,205 @@
+group Python;
+
+program(globals,functions) ::= <<
+import math
+
+class Result(object):
+	def __init__(self,outp,outputsize):
+		self.output=outp
+
+<globals; separator="\n">
+<functions; separator="\n">
+>>
+
+variable(type,name) ::= ""
+
+variableInit(type,name,value) ::= "<name> = <value>"
+
+globalVariable ::= variable
+
+arrayInitializationBody(args) ::= <<[<args; separator=",">]>>
+
+arrayDeclaration(type,name,size) ::= "<name>=[0 for x in range(<size>)]"
+
+arrayInitialization(type,name,values,size) ::= "<name> = <values>"
+
+doubleArrayDeclaration(type,name,sizeone,sizetwo) ::= "<name> = [[0 for x in range(<sizeone>)] for y in range(<sizetwo>)]"
+
+doubleArrayInitialization(type,name,values,sizeone,sizetwo) ::= "<name> = <values>"
+
+array(name,indices) ::= "<name><indices:{ind|[<ind>]}>"
+
+arrayexp(index) ::= "[<index>]"
+
+castvalue(type,value) ::= "<type>(<value>)"
+
+globalVariableInit ::= variableInit
+
+globalArrayDeclaration ::= arrayDeclaration
+
+globalArrayInitialization ::= arrayInitialization
+
+globalDoubleArrayDeclaration ::= doubleArrayDeclaration
+
+globalDoubleArrayInitialization ::= doubleArrayInitialization
+
+function(type,name,args,locals,stats) ::= <<
+def <name>(<args; separator=", ">):
+	<globals:{glob|global <glob.name>}; separator="\n">
+	<locals; separator="\n">
+	<stats; separator="\n">
+>>
+
+type_int() ::= "int"
+
+type_char() ::= "char"
+
+type_long_int ::= type_int
+
+type_long_long_int ::= type_int
+
+type_unsigned_long_int ::= type_long_int
+
+type_unsigned_long_long_int ::= type_long_long_int
+
+type_unsigned_int ::= type_int
+
+type_float() ::= "float"
+
+type_double ::= type_float
+
+type_user_object(name) ::= "<name>"
+
+parameter(type,name) ::= "<name>"
+
+arrayparameter ::= parameter
+
+doublearrayparameter ::= parameter
+
+statement(expr) ::= "<expr>"
+
+brackets(expr) ::= "(<expr>)"
+
+return(expr) ::= "return <expr>"
+
+statementList(locals,stats) ::= <<
+	<locals; separator="\n">
+	<stats; separator="\n">
+>>
+
+// python has a weird FOR, use a WHILE. :)
+forLoop(e1,e2,e3,locals,stats) ::= <<
+<e1>
+while ( <e2> ):
+	<locals; separator="\n">
+	<stats; separator="\n">
+	<e3>
+>>
+
+ifBlock(e,locals,stats) ::= <<
+if (<e>):
+	<locals; separator="\n">
+	<stats; separator="\n">
+>>
+
+elseBlock(locals,stats) ::= <<
+else:
+	<locals; separator="\n">
+	<stats; separator="\n">
+>>
+
+funcinstance(name,args) ::= <<<name>(<args; separator=",">)>>
+
+constrinstance(type,name,args) ::= <<<name> = <type>(<args; separator=",">)>>
+
+inkrement(e) ::= "<e>=<e>+1"
+
+dekrement(e) ::= "<e>=<e>-1"
+
+inkrementby(lhs,rhs) ::= "<lhs>=<lhs>+<rhs>"
+
+dekrementby(lhs,rhs) ::= "<lhs>=<lhs>-<rhs>"
+
+assignmultiply(lhs,rhs) ::= "<lhs>=<lhs>*<rhs>"
+
+assigndivide(lhs,rhs) ::= "<lhs>=<lhs>/<rhs>"
+
+assign(lhs,rhs) ::= "<lhs>=<rhs>"
+
+conjunction(left,right) ::= "<left> and <right>"
+
+disjunction(left,right) ::= "<left> or <right>"
+
+equals(left,right) ::= "<left>==<right>"
+
+lessThan(left,right) ::= "<left>\<<right>"
+
+moreThan(left,right) ::= "<left>\><right>"
+
+lessOrEqual(left,right) ::= "<left>\<=<right>"
+
+moreOrEqual(left,right) ::= "<left>\>=<right>"
+
+unEqual(left,right) ::= "<left>!=<right>"
+
+add(left,right) ::= "<left>+<right>"
+
+substract(left,right) ::= "<left>-<right>"
+
+multiply(left,right) ::= "<left>*<right>"
+
+divide(left,right) ::= "<left>/<right>"
+
+bitwiseand(left,right) ::= "<left>&<right>"
+
+bitwiseor(left,right) ::= "<left>|<right>"
+
+bitwisexor(left,right) ::= "<left>^<right>"
+
+bitwiseleftshift(left,right) ::= "<left> \<\< <right>"
+
+bitwiserightshift(left,right) ::= "<left> \>\> <right>"
+
+floor_function(argument) ::= "math.floor(<argument>)"
+round_function(argument) ::= "round(<argument>)"
+ceil_function(argument) ::= "math.ceil(<argument>)"
+sin_function(argument) ::= "math.sin(<argument>)"
+sinh_function(argument) ::= "math.sinh(<argument>)"
+cos_function(argument) ::= "math.cos(<argument>)"
+cosh_function(argument) ::= "math.cosh(<argument>)"
+tan_function(argument) ::= "math.tan(<argument>)"
+tanh_function(argument) ::= "math.tanh(<argument>)"
+exp_function(argument) ::= "math.exp(<argument>)"
+log_function(argument) ::= "math.log(<argument>)"
+log10_function(argument) ::= "math.log10(<argument>)"
+sqrt_function(argument) ::= "math.sqrt(<argument>)"
+abs_function(argument) ::= "math.fabs(<argument>)"
+pow_function(base,exponent) ::= "<base>**<exponent>"
+
+refVar(id) ::= "<id>"
+
+iconst(value) ::= "<value>"
+
+minusNumber(value) ::= "-<value>"
+
+valueWithSemicolon ::= iconst
+
+floatFloatingPoint ::= iconst
+
+doubleFloatingPoint ::= iconst
+
+defaultInt ::= iconst
+
+unsignedInt ::= defaultInt
+
+longInt ::= defaultInt
+
+longLongInt ::= defaultInt
+
+unsignedLongInt ::= longInt
+
+unsignedLongLongInt ::= longLongInt
+
+boolean_false()::= "False"
+
+boolean_true()::= "True"

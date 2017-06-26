@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE zion SYSTEM "..//IComponent.dtd">
+
+<icomponent>
+  <config>
+    <entry key="classdir" type="STRING" value="HEMS/hems"/>
+    <entry key="classname" type="STRING" value="hems.Market"/>
+	<entry key="name" type="STRING" value="Home Energy Management System"/>
+	<entry key="description" type="STRING" value="Defines a market space in which loads and local generators can trade energy"/>
+	<entry key="image" type="STRING" value="hems.png"/>
+	<entry key="tags" type="STRING" value="HEMS EnergyManagement SmartHome SmartGrid LocalGeneration RenewableEnergy"/>
+  </config>
+  <properties>
+  		<propentry key="auction_type" type="STRING" value="UCDA"/>
+  		<propentry key="agent_type" type="STRING" value="DAAgent"/>
+  		
+  		<propentry key="money_symbol" type="STRING" value="EUR"/>
+  		<propentry key="market_start_time" type="STRING" value="2013 01 01 07:51:00"/>
+  		<propentry key="market_price_threshold" type="FLOAT" value="0.02" />
+  		<propentry key="simulation_duration" type="INT" value="3600"/>
+  		<propentry key="allocation_length" type="INT" value="1"/>
+  		<propentry key="iterations" type="INT" value="4"/>
+  		<propentry key="limit_price" type="FLOAT" value="1.0"/>
+  		<propentry key="settingsfile" type="FILE" value="Components\Problems\HEMS\settings.json"/>
+  		
+  		<propentry key="model_manager_address" type="STRING" value="127.0.0.1"/>
+  		<propentry key="model_manager_port" type="INT" value="1988"/>
+  		
+  		<propentry key="allow_grid_to_grid_energy_trade" type="BOOLEAN" value="True"/>
+  		
+  		<propentry key="factor_rewarding_completed_operation" type="INT" value="1000"/>
+  		
+  		<propentry key="penalty_grid_use" type="INT" value="5"/>
+  		
+  		<propentry key="penalty_device_start_delay" type="INT" value="100"/>
+  		<propentry key="reward_device_start" type="INT" value="100"/>
+  		
+  		<propentry key="penalty_state_start_delay" type="INT" value="1000"/>
+  		<propentry key="reward_state_start" type="INT" value="100"/>
+  		
+  		<propentry key="penalty_state_interruption" type="INT" value="1000"/>
+  		
+  		<propentry key="penalty_unstarted" type="INT" value="1000"/>
+  		<propentry key="penalty_violating_market" type="INT" value="10"/>
+  		<propentry key="penalty_violating_sensitivity" type="INT" value="10"/>
+  		
+  		<propentry key="penalty_unpowered_controller" type="INT" value="10000"/>
+  		<propentry key="penalty_unnecessary_trading" type="INT" value="10000"/>
+  		<propentry key="penalty_inflexible_offers" type="INT" value="100000"/>
+  </properties>
+  <requirements>
+    <reqentry key="inputnumber" type="INT" value="14"/>
+    <reqentry key="outputnumber" type="INT" value="1"/>
+    <reqentry key="minimumCandidates" type="INT" value="1"/>
+    <reqentry key="maximumCandidates" type="INT" value="1"/>
+  </requirements>
+</icomponent>

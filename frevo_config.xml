@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE frevo SYSTEM "config.dtd">
+
+<frevo> 
+  <tags/>  
+  <window-sizes> 
+    <window name="main" width="859" height="600"/>  
+    <window name="componentbrowser" width="600" height="600" topsplit="273" bigsplit="271"/> 
+  </window-sizes> 
+</frevo>

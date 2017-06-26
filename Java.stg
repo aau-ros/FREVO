@@ -1,0 +1,213 @@
+group Java;
+
+program(globals,functions) ::= <<
+class Representation {
+	public static class Result{
+		public final float[] output;
+		public Result(float outp[], int outputsize){
+			output=outp;
+		}
+	}
+    <globals; separator="\n">
+    <functions; separator="\n">
+}
+>>
+
+variable(type,name) ::= "<type> <name>;"
+
+variableInit(type,name,value) ::= "<type> <name> = <value>;"
+
+arrayDeclaration(type,name,size) ::= "<type>[] <name> = new <type>[<size>];"
+
+arrayInitialization(type,name,values,size) ::= "<type>[] <name> = new <type>[] <values>;"
+
+doubleArrayDeclaration(type,name,sizeone,sizetwo) ::= "<type>[][] <name> = new <type>[<sizeone>][<sizetwo>];"
+
+doubleArrayInitialization(type,name,values,sizeone,sizetwo) ::= "<type>[][] <name> = new <type>[][] <values>;"
+
+array(name,indices) ::= << <name><indices:{ind|[<ind>]}> >>
+
+arrayexp(index) ::= "[<index>]"
+
+cast(type) ::= "(<type>)"
+
+castvalue(type,value) ::= "(<type>)<value>"
+
+dummy() ::= "dummy"
+
+globalVariable ::= variable
+
+globalVariableInit ::= variableInit
+
+globalArrayDeclaration ::= arrayDeclaration
+
+globalArrayInitialization ::= arrayInitialization
+
+globalDoubleArrayDeclaration ::= doubleArrayDeclaration
+
+globalDoubleArrayInitialization ::= doubleArrayInitialization
+
+function(type,name,args,locals,stats) ::= <<
+<type> <name>(<args; separator=", ">) {
+    <locals; separator="\n">
+    <stats; separator="\n">
+}
+>>
+
+type_int() ::= "int"
+
+type_long_int ::= type_int
+
+type_long_long_int() ::= "long"
+
+type_unsigned_long_int ::= type_long_int
+
+type_unsigned_long_long_int ::= type_long_long_int
+
+type_unsigned_int ::= type_int
+
+type_char() ::= "char"
+
+type_float() ::= "float"
+
+type_double() ::= "double"
+
+type_user_object(name) ::= "<name>"
+
+parameter(type,name) ::= "<type> <name>"
+
+arrayparameter(type,name) ::= "<type>[] <name>"
+
+doublearrayparameter(type,name) ::= "<type>[][] <name>"
+
+statement(expr) ::= "<expr>;"
+
+brackets(expr) ::= "(<expr>)"
+
+return(expr) ::= "return <expr>;"
+
+statementList(locals,stats) ::= <<
+{
+    <locals; separator="\n">
+    <stats; separator="\n">
+}<\n>
+>>
+
+forLoop(e1,e2,e3,locals,stats) ::= <<
+for (<e1>; <e2>; <e3>) {
+    <locals; separator="\n">
+    <stats; separator="\n">
+}
+>>
+
+ifBlock(e,locals,stats) ::= <<
+if (<e>) {
+    <locals; separator="\n">
+    <stats; separator="\n">
+}
+>>
+
+elseBlock(locals,stats) ::= <<
+else {
+    <locals; separator="\n">
+    <stats; separator="\n">
+}
+>>
+
+funcinstance(name,args) ::= << <name>(<args; separator=",">)>>
+
+constrinstance(type,name,args) ::= << <type> <name> = new <type>(<args; separator=",">);>>
+
+arrayInitializationBody(args) ::= <<{<args; separator=",">}>>
+
+inkrement(e) ::= "<e>++"
+
+dekrement(e) ::= "<e>--"
+
+inkrementby(lhs,rhs) ::= "<lhs>+=<rhs>"
+
+dekrementby(lhs,rhs) ::= "<lhs>-=<rhs>"
+
+assignmultiply(lhs,rhs) ::= "<lhs>*=<rhs>"
+
+assigndivide(lhs,rhs) ::= "<lhs>/=<rhs>"
+
+assign(lhs,rhs) ::= "<lhs>=<rhs>"
+
+conjunction(left,right) ::= "<left> && <right>"
+
+disjunction(left,right) ::= "<left> || <right>"
+
+equals(left,right) ::= "<left> == <right>"
+
+lessThan(left,right) ::= "<left>\<<right>"
+
+moreThan(left,right) ::= "<left>\><right>"
+
+lessOrEqual(left,right) ::= "<left>\<=<right>"
+
+moreOrEqual(left,right) ::= "<left>\>=<right>"
+
+unEqual(left,right) ::= "<left>!=<right>"
+
+add(left,right) ::= "<left>+<right>"
+
+substract(left,right) ::= "<left>-<right>"
+
+multiply(left,right) ::= "<left>*<right>"
+
+divide(left,right) ::= "<left>/<right>"
+
+bitwiseand(left,right) ::= "<left>&<right>"
+
+bitwiseor(left,right) ::= "<left>|<right>"
+
+bitwisexor(left,right) ::= "<left>^<right>"
+
+bitwiseleftshift(left,right) ::= "<left> \<\< <right>"
+
+bitwiserightshift(left,right) ::= "<left> \>\> <right>"
+
+floor_function(argument) ::= "Math.floor(<argument>)"
+round_function(argument) ::= "Math.round(<argument>)"
+ceil_function(argument) ::= "Math.ceil(<argument>)"
+sin_function(argument) ::= "Math.sin(<argument>)"
+sinh_function(argument) ::= "Math.sinh(<argument>)"
+cos_function(argument) ::= "Math.cos(<argument>)"
+cosh_function(argument) ::= "Math.cosh(<argument>)"
+tan_function(argument) ::= "Math.tan(<argument>)"
+tanh_function(argument) ::= "Math.tanh(<argument>)"
+exp_function(argument) ::= "Math.exp(<argument>)"
+log_function(argument) ::= "Math.log(<argument>)"
+log10_function(argument) ::= "Math.log10(<argument>)"
+sqrt_function(argument) ::= "Math.sqrt(<argument>)"
+abs_function(argument) ::= "Math.abs(<argument>)"
+pow_function(base,exponent) ::= "Math.pow(<base>,<exponent>)"
+
+refVar(id) ::= "<id>"
+
+iconst(value) ::= "<value>"
+
+minusNumber(value) ::= "-<value>"
+
+valueWithSemicolon(value) ::= "<value>;"
+
+floatFloatingPoint(value) ::="<value>f"
+
+doubleFloatingPoint(value) ::="<value>d"
+
+defaultInt(value) ::= "<value>"
+
+unsignedInt ::= defaultInt
+
+longInt ::= defaultInt
+
+longLongInt(value) ::= "<value>L"
+
+unsignedLongInt ::= longInt
+
+unsignedLongLongInt ::= longLongInt
+
+boolean_false()::= "false"
+
+boolean_true()::= "true"

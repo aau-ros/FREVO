@@ -1,0 +1,62 @@
+group ThreeLayerNetwork;
+
+getOutputDeclaration(stepnumber,inputnodes,outputsize,outputnodes,nodes,biases,weights) ::= <<
+
+float bias[<nodes>]={<biases:{bia|<bia>f}; separator=", ">};
+
+float weight[<nodes>][<nodes>]={<weights:{wei|{<wei:{we|<we>f}; separator=", ">}}; separator=", ">};
+
+float netOutput[<outputsize>];
+
+float sigmoidActivate(float x) {
+	float y=(float)(1.0f / (1.0f + exp(-x)));
+	return y;
+}
+
+Result getStep(float netInput[], long inputsize){
+    long i;
+	long j;
+	float activation [<nodes>];
+	for (i=0L; i \< <nodes>L; i=i+1){
+		activation[i]=0.0f;
+	}
+    for (i=0L; i \< inputsize; i=i+1) {
+      netOutput[i]=netInput[i];
+    }
+	for (i=<inputnodes>L; i \< (<nodes>L-<outputnodes>L); i=i+1) {
+      float sumValue=0.0f;
+	  for (j=0L; j \< <inputnodes>L; j=j+1) {
+        sumValue=sumValue+weight[j][i]*netOutput[j];
+      }
+	  activation[i]=bias[i]+sumValue;
+	  netOutput[i]=sigmoidActivate(activation[i]);
+    }
+	for (i=(<nodes>L-<outputnodes>L); i\< <nodes>L; i=i+1) {
+	  float sumValue=0.0f;
+	  for (j=<inputnodes>L; j \< (<nodes>L-<outputnodes>L); j=j+1) {
+	    sumValue=sumValue+weight[j][i]*netOutput[j];
+	  }
+	  activation[i]=bias[i]+sumValue;
+	  netOutput[i]=sigmoidActivate(activation[i]);
+	}
+	float outputVector [<outputnodes>];
+	for (i = (<nodes>L - <outputnodes>L); i \< <nodes>L; i=i+1) {
+	  j = i - (<nodes>L - <outputnodes>L);
+      outputVector[j]=netOutput[i];
+    }
+	Result r(outputVector,<outputnodes>L);
+	return r;
+}
+
+Result getOutput(float netInput[], long inputsize){
+  long i;
+  for (i=0L; i \< <outputsize>L; i=i+1) {
+    netOutput[i]=0;
+  }
+  for (i=0L; i \< <stepnumber>L - 1; i=i+1) {
+    getStep(netInput, inputsize);
+  }
+  return getStep(netInput, inputsize);
+}
+
+>>
