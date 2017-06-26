@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE zion SYSTEM "..//IComponent.dtd">
+
+<icomponent>
+  <config>
+    <entry key="classdir" type="STRING" value="EmergencyExit/emergencyexit"/>
+    <entry key="classname" type="STRING" value="emergencyexit.EmergencyExit"/>
+    <entry key="name" type="STRING" value="Emergency Exit"/>
+    <entry key="description" type="STRING" value="A simulation where multiple agents try to find the emergency exit(s)."/>
+    <entry key="image" type="STRING" value="EmergencyExit.png"/>
+  </config>
+  <properties>
+    <propentry key="environment" type="ENUM" value="small_maze" enumName="emergencyexit.Environment" description="Choose one of the existing environments."/>
+    <propentry key="steps" type="INT" value="50" description="Maximum number of steps the agents are allowed to make."/>
+    <propentry key="agents" type="INT" value="10" description="Number of agents."/>
+  </properties>
+  <requirements>
+    <reqentry key="inputnumber" type="INT" value="10"/>
+    <reqentry key="outputnumber" type="INT" value="2"/>
+    <reqentry key="minimumCandidates" type="INT" value="1"/>
+    <reqentry key="maximumCandidates" type="INT" value="1"/>
+  </requirements>
+</icomponent>
